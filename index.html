@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>YG Sports Gateway - 양구군 스포츠 & 군부대 면회 통합 서비스</title>
+  <meta name="description" content="양구군 스포츠대회 참가자 및 군 장병 면회객을 위한 모바일 통합 서비스 플랫폼. 대회 일정, 대진표, 경기장 위치 및 훈련소 안내, 숙박/맛집 정보 안내.">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <div id="app-container">
+    
+    <!-- Top Header -->
+    <header>
+      <div class="brand">
+        <div id="header-logo" class="brand-logo">YG</div>
+        <div class="brand-title">YG Sports Gateway</div>
+      </div>
+      <div class="badge-demo">MVP v1.0</div>
+      <!-- Scroll Progress Bar -->
+      <div id="scroll-progress" class="scroll-progress-bar"></div>
+    </header>
+
+    <!-- Main Views Area -->
+    <main>
+      
+      <!-- ==================== VIEW 1: HOME ==================== -->
+      <section id="home-view" class="view-section active">
+        
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+          <h1 class="hero-title">양구군 방문을<br>환영합니다</h1>
+          <p class="hero-desc mt-4">스포츠 참가자 및 군 장병 면회객을 위한<br>실시간 정보 가이드 서비스</p>
+        </div>
+
+        <!-- Role Selectors -->
+        <div>
+          <h2 class="mb-2">🏆 방문 목적 선택</h2>
+          <p class="subtitle">해당하는 카테고리를 선택해 빠른 정보를 확인해 보세요.</p>
+          <div class="selector-grid">
+            <div class="glass-card selector-card" onclick="switchView('sports')">
+              <div class="selector-icon sports-icon">
+                <i data-lucide="trophy"></i>
+              </div>
+              <h3>스포츠 대회</h3>
+              <p>대회 일정, 대진표, 경기장 위치 확인</p>
+            </div>
+            <div class="glass-card selector-card" onclick="switchView('military')">
+              <div class="selector-icon military-icon">
+                <i data-lucide="shield-check"></i>
+              </div>
+              <h3>군부대 면회</h3>
+              <p>수료식 정보, 체크리스트, 숙소/맛집</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Home Desktop Row (Weather & Contacts) -->
+        <div class="home-desktop-row">
+          <!-- Today Weather Widget -->
+          <div id="weather-widget" class="weather-panel">
+            <!-- Populated by JS -->
+            <div class="weather-info">
+              <div class="weather-temp">18°C</div>
+              <div class="weather-details">
+                <div class="weather-loc">강원특별자치도 양구군</div>
+                <div class="weather-desc">구름 조금 • 운동하기 좋은 날씨</div>
+              </div>
+            </div>
+            <div class="weather-icon-placeholder">☀️</div>
+          </div>
+
+          <!-- Quick Links / Contacts -->
+          <div class="contacts-card">
+            <h2>📞 양구군 필수 긴급 연락처</h2>
+            <div class="quick-utilities mt-4">
+              <a href="tel:033-481-2331" class="util-btn">
+                <i data-lucide="phone"></i>
+                <div>
+                  <strong>양구 콜택시</strong>
+                  <span class="util-btn-desc">033-481-2331</span>
+                </div>
+              </a>
+              <a href="tel:033-480-2114" class="util-btn">
+                <i data-lucide="phone-call"></i>
+                <div>
+                  <strong>양구군청 대표전화</strong>
+                  <span class="util-btn-desc">033-480-2114</span>
+                </div>
+              </a>
+              <a href="https://www.ygtour.kr" target="_blank" rel="noopener noreferrer" class="util-btn">
+                <i data-lucide="external-link"></i>
+                <div>
+                  <strong>양구 문화관광 포털</strong>
+                  <span class="util-btn-desc">ygtour.kr 공식 웹사이트 바로가기</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+
+      <!-- ==================== VIEW 2: SPORTS LIST ==================== -->
+      <section id="sports-view" class="view-section">
+        
+        <div class="search-container">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="sports-search" class="search-input" placeholder="대회명 또는 종목명을 검색하세요...">
+        </div>
+
+        <!-- Category Slide Filter Container with Scroll Controls -->
+        <div class="category-slider-wrapper">
+          <button class="slide-ctrl-btn prev" onclick="scrollSlider('sports-categories', -150)" aria-label="이전 카테고리">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <div class="category-slider" id="sports-categories">
+            <!-- Populated by JS -->
+          </div>
+          <button class="slide-ctrl-btn next" onclick="scrollSlider('sports-categories', 150)" aria-label="다음 카테고리">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+
+        <div>
+          <h2 id="sports-list-header">🏆 진행/예정 스포츠 대회</h2>
+          <div class="tournament-list mt-4" id="tournament-list-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== SUB-VIEW: SPORTS DETAIL ==================== -->
+      <section id="sports-detail-view" class="view-section">
+        
+        <!-- Detail Header -->
+        <div class="detail-header">
+          <button class="back-btn" onclick="backToSportsList()">
+            <i data-lucide="arrow-left"></i>
+          </button>
+          <div>
+            <span id="detail-status" class="status-badge">진행중</span>
+            <h2 id="detail-title" class="mt-4" style="font-size: 18px;">양구군 전국 테니스 대회</h2>
+          </div>
+        </div>
+
+        <!-- Sub Navigation Tabs -->
+        <div class="detail-nav-tabs">
+          <button class="detail-tab active" onclick="switchDetailTab('info')">대회 정보</button>
+          <button class="detail-tab" onclick="switchDetailTab('schedule')">경기 일정</button>
+          <button class="detail-tab" onclick="switchDetailTab('bracket')">대진표</button>
+          <button class="detail-tab" onclick="switchDetailTab('location')">경기장 위치</button>
+        </div>
+
+        <!-- Tab 1: Info -->
+        <div id="detail-tab-info" class="detail-tab-content active">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Tab 2: Schedule -->
+        <div id="detail-tab-schedule" class="detail-tab-content">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Tab 3: Bracket -->
+        <div id="detail-tab-bracket" class="detail-tab-content">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Tab 4: Location -->
+        <div id="detail-tab-location" class="detail-tab-content">
+          <!-- Populated by JS -->
+        </div>
+
+      </section>
+
+      <!-- ==================== VIEW 3: MILITARY ==================== -->
+      <section id="military-view" class="view-section">
+        
+        <!-- Unit Select tabs with Scroll Controls -->
+        <div class="category-slider-wrapper">
+          <button class="slide-ctrl-btn prev" onclick="scrollSlider('military-unit-tabs', -150)" aria-label="이전 부대">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <div class="military-nav-container" id="military-unit-tabs">
+            <!-- Populated by JS -->
+          </div>
+          <button class="slide-ctrl-btn next" onclick="scrollSlider('military-unit-tabs', 150)" aria-label="다음 부대">
+            <i data-lucide="chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Sub Tabs (Category filter for military) -->
+        <div class="detail-nav-tabs">
+          <button class="detail-tab active mil-sub-tab" onclick="switchMilSubTab('ceremony')">수료식 안내</button>
+          <button class="detail-tab mil-sub-tab" onclick="switchMilSubTab('checklist')">면회 준비물</button>
+          <button class="detail-tab mil-sub-tab" onclick="switchMilSubTab('pension')">주변 펜션</button>
+          <button class="detail-tab mil-sub-tab" onclick="switchMilSubTab('food')">주변 맛집</button>
+        </div>
+
+        <!-- Mil Tab 1: Ceremony Info -->
+        <div id="mil-tab-ceremony" class="detail-tab-content active">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Mil Tab 2: Checklist -->
+        <div id="mil-tab-checklist" class="detail-tab-content">
+          <div class="glass-card">
+            <h3>🎖️ 신병 수료식 / 면회 필수 체크리스트</h3>
+            <p class="subtitle">가족분들이 꼭 챙기셔야 할 항목들입니다. 체크해 보세요.</p>
+            <div class="flex-col gap-8" id="checklist-container">
+              <!-- Populated by JS from localStorage/Mock -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Mil Tab 3: Pension Directory -->
+        <div id="mil-tab-pension" class="detail-tab-content">
+          <div class="search-container mb-2">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="pension-search" class="search-input military-focus" placeholder="펜션 이름으로 검색하세요...">
+          </div>
+          <div class="flex-col gap-12" id="pension-list-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- Mil Tab 4: Food Directory -->
+        <div id="mil-tab-food" class="detail-tab-content">
+          <div class="search-container mb-2">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="food-search" class="search-input military-focus" placeholder="음식명 또는 식당 검색...">
+          </div>
+          <div class="flex-col gap-12" id="food-list-container">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ==================== VIEW 4: TOUR / UTILITIES ==================== -->
+      <section id="info-view" class="view-section">
+        
+        <!-- Yanggu Core Info Card -->
+        <div class="glass-card">
+          <div class="card-header-icon"><i data-lucide="map"></i></div>
+          <h2>🏞️ 국토정중앙 양구군</h2>
+          <p class="subtitle">한반도의 중심, 양구를 즐기는 방법</p>
+          
+          <div style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);" class="mb-4">
+            양구군은 국토의 지리적 정중앙 좌표가 위치한 '국토정중앙' 도시입니다. 소양호와 파로호로 둘러싸인 아름다운 자연과 분지형 지형으로 각종 스포츠 전지훈련 및 대회가 열리는 메카이며, 21사단 백두산부대가 주둔하는 안보 요충지이기도 합니다.
+          </div>
+        </div>
+
+        <!-- External Link Categories -->
+        <div>
+          <h2>🔗 유용한 공식 정보 링크</h2>
+          <div class="quick-utilities mt-4">
+            <a href="https://www.ygtour.kr/main/sub.html?MenuID=135" target="_blank" rel="noopener noreferrer" class="util-btn">
+              <i data-lucide="bus"></i>
+              <div>
+                <strong>양구 시내/외 버스 시간표</strong>
+                <div style="font-size: 10px; color: var(--text-muted);">대중교통 종합 시간표 및 운임 정보</div>
+              </div>
+            </a>
+            <a href="https://www.yanggu.go.kr/portal/sub.html?MenuID=177" target="_blank" rel="noopener noreferrer" class="util-btn">
+              <i data-lucide="heart-pulse"></i>
+              <div>
+                <strong>의료기관 & 약국 현황</strong>
+                <div style="font-size: 10px; color: var(--text-muted);">양구군 내 당직 약국 및 의료기관 찾기</div>
+              </div>
+            </a>
+            <a href="https://www.ygtour.kr/main/sub.html?MenuID=19" target="_blank" rel="noopener noreferrer" class="util-btn">
+              <i data-lucide="camera"></i>
+              <div>
+                <strong>양구 8경 관광 가이드</strong>
+                <div style="font-size: 10px; color: var(--text-muted);">두타연, 한반도섬, 국토정중앙천문대 등</div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Transit Info -->
+        <div class="glass-card">
+          <h3>🚍 양구 시내버스 요약 정보</h3>
+          <p class="subtitle">주요 거점 이동 버스 요약</p>
+          <div class="flex-col">
+            <div class="bus-item">
+              <div class="bus-route">양구터미널 ↔ 신병교육대 (21사단)</div>
+              <div class="bus-time">하루 5회 운행 (대략 25분 소요, 택시 이용 시 약 15,000원)</div>
+            </div>
+            <div class="bus-item">
+              <div class="bus-route">양구터미널 ↔ 춘천역 (시외버스)</div>
+              <div class="bus-time">매일 30~60분 간격 운행 (약 50분 소요, 춘천-양구 연계 노선)</div>
+            </div>
+            <div class="bus-item">
+              <div class="bus-route">양구터미널 ↔ 남면(국토정중앙면)</div>
+              <div class="bus-time">30분 간격 시내버스 운행 (약 15분 소요)</div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+      <button id="nav-home" class="nav-item active" onclick="switchView('home')">
+        <i data-lucide="home"></i>
+        <span>홈</span>
+      </button>
+      <button id="nav-sports" class="nav-item" onclick="switchView('sports')">
+        <i data-lucide="trophy"></i>
+        <span>스포츠대회</span>
+      </button>
+      <button id="nav-military" class="nav-item" onclick="switchView('military')">
+        <i data-lucide="shield"></i>
+        <span>군 면회</span>
+      </button>
+      <button id="nav-info" class="nav-item" onclick="switchView('info')">
+        <i data-lucide="info"></i>
+        <span>양구정보</span>
+      </button>
+    </nav>
+
+     <!-- Toast Notification for clipboard and quick actions -->
+    <div id="toast" class="toast">
+      <i data-lucide="check" id="toast-icon-type" class="toast-icon"></i>
+      <span id="toast-message">주소가 복사되었습니다.</span>
+    </div>
+
+    <!-- Floating Scroll-to-Top FAB -->
+    <button id="scroll-to-top" class="scroll-top-btn" onclick="scrollToTop()" aria-label="맨 위로 이동">
+      <i data-lucide="chevrons-up"></i>
+    </button>
+
+
+    <!-- Zoomable Bracket Modal -->
+    <div id="bracket-modal" class="modal">
+      <div class="modal-header">
+        <span id="modal-title" class="modal-title">전국 테니스 대회 대진표</span>
+        <button class="modal-close" onclick="closeBracketModal()">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body">
+        <div id="modal-img-container" class="modal-img-container">
+          <!-- Visual SVG Bracket or Image will go here -->
+          <img id="modal-image" src="" alt="대진표 이미지">
+        </div>
+      </div>
+      <div class="modal-controls">
+        <button class="modal-ctrl-btn" onclick="zoomBracket(0.1)">
+          <i data-lucide="zoom-in"></i>
+        </button>
+        <button class="modal-ctrl-btn" onclick="zoomBracket(-0.1)">
+          <i data-lucide="zoom-out"></i>
+        </button>
+        <button class="modal-ctrl-btn" onclick="resetZoomBracket()">
+          <i data-lucide="refresh-cw"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

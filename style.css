@@ -1,0 +1,1620 @@
+/* style.css - YG Sports Gateway MVP Styling */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg-main: #090d16;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --bg-card-hover: rgba(31, 41, 55, 0.85);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(0, 114, 206, 0.5);
+  
+  /* Accent Colors (Modern Tennis Court Inspired) */
+  --sports-primary: #0072ce;     /* Australian Open Court Blue */
+  --sports-secondary: #0095ff;   /* Light Sky Blue */
+  --sports-gradient: linear-gradient(135deg, #0b2545 0%, #0072ce 100%);
+  
+  --military-primary: #d8fc38;   /* Neon Tennis Ball Volt */
+  --military-secondary: #b2db00; /* Neon Lime Accent */
+  --military-gradient: linear-gradient(135deg, #d8fc38 0%, #b2db00 100%);
+  
+  --accent-gold: #f25c05;       /* Terracotta Clay Court Orange */
+  --accent-gold-gradient: linear-gradient(135deg, #f25c05 0%, #cc4a00 100%);
+  
+  /* Text Colors */
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  
+  /* General Variables */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow-sports: 0 0 15px rgba(59, 130, 246, 0.35);
+  --shadow-glow-military: 0 0 15px rgba(163, 230, 53, 0.25);
+  
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+  background: radial-gradient(circle at 50% 0%, #0f2c59 0%, #06090f 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+  padding: 0;
+}
+
+/* Custom Scrollbar for main scroll container */
+main::-webkit-scrollbar {
+  width: 6px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+}
+main::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+
+/* Mobile Frame Container (Simulates Phone on Desktop) */
+#app-container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  background-color: var(--bg-main);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+  padding-bottom: 74px; /* Space for bottom nav */
+}
+
+/* Scrollbar styling */
+#app-container::-webkit-scrollbar {
+  width: 5px;
+}
+#app-container::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+#app-container::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: 4px;
+}
+
+/* Header Styling */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(9, 13, 22, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-color);
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  background: var(--sports-gradient);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: var(--shadow-glow-sports);
+  transition: var(--transition-normal);
+}
+
+.brand-logo.military-theme {
+  background: var(--military-gradient);
+  box-shadow: var(--shadow-glow-military);
+}
+
+.brand-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #9ca3af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.badge-demo {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  padding: 2px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+/* Bottom Navigation Bar */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 64px;
+  background: rgba(9, 13, 22, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 500;
+  width: 25%;
+  height: 100%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  border: none;
+  background: transparent;
+  gap: 4px;
+}
+
+.nav-item i {
+  font-size: 20px;
+  transition: var(--transition-fast);
+}
+
+.nav-item:hover {
+  color: var(--text-primary);
+}
+
+.nav-item.active {
+  color: var(--sports-primary);
+}
+
+.nav-item.active.military-theme {
+  color: var(--military-primary);
+}
+
+.nav-item.active i {
+  transform: translateY(-2px);
+}
+
+/* Tab Active Dot Indicator */
+.nav-item.active::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: currentColor;
+  border-radius: 50%;
+  margin-top: 1px;
+}
+
+/* Content Container & View Routing Styles */
+main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.view-section {
+  display: none !important;
+  animation: fadeIn var(--transition-normal);
+}
+
+.view-section.active {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
+  width: 100% !important;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Card UI & Common Components */
+.glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.glass-card:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-header-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 24px;
+  opacity: 0.15;
+}
+
+/* Title Styling */
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+/* Button UI */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+  transition: var(--transition-fast);
+  text-decoration: none;
+  width: 100%;
+}
+
+.btn-sports {
+  background: var(--sports-gradient);
+  color: white;
+  box-shadow: var(--shadow-glow-sports);
+}
+
+.btn-sports:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-military {
+  background: var(--military-gradient);
+  color: #090d16;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-military);
+}
+
+.btn-military:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Home Section Styles */
+.hero-banner {
+  padding: 38px 20px;
+  background: linear-gradient(to bottom, rgba(15, 44, 89, 0.6) 0%, rgba(9, 13, 22, 0.95) 100%), url('modern_tennis_court.png') no-repeat center center;
+  background-size: cover;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+
+.hero-title span {
+  background: var(--sports-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-title span.mil {
+  background: var(--military-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.selector-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.selector-card {
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.selector-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.sports-icon {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--sports-primary);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.military-icon {
+  background: rgba(163, 230, 53, 0.15);
+  color: var(--military-primary);
+  border: 1px solid rgba(163, 230, 53, 0.25);
+}
+
+.selector-card:hover .sports-icon {
+  background: var(--sports-gradient);
+  color: white;
+  box-shadow: var(--shadow-glow-sports);
+  transform: translateY(-2px);
+  transition: var(--transition-normal);
+}
+
+.selector-card:hover .military-icon {
+  background: var(--military-gradient);
+  color: #090d16;
+  box-shadow: var(--shadow-glow-military);
+  transform: translateY(-2px);
+  transition: var(--transition-normal);
+}
+
+.selector-card h3 {
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+.selector-card p {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Quick Utilities */
+.quick-utilities {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.util-btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 14px 18px;
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  cursor: pointer;
+  width: 100%;
+}
+
+.util-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  text-align: left;
+}
+
+.util-btn strong {
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.util-btn-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.util-btn:hover {
+  background: var(--bg-card-hover);
+  transform: translateX(2px);
+}
+
+.util-btn i {
+  color: var(--sports-primary);
+  flex-shrink: 0;
+}
+
+.util-btn.military-icon-style i {
+  color: var(--military-primary);
+}
+
+
+/* Weather Panel */
+.weather-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(135deg, rgba(22, 30, 49, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+
+.weather-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.weather-temp {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  color: white;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-loc {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.weather-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.weather-icon-placeholder {
+  font-size: 36px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Search Bar styling */
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px 12px 40px;
+  color: white;
+  font-size: 14px;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--border-focus);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+.search-input.military-focus:focus {
+  border-color: rgba(163, 230, 53, 0.5);
+  box-shadow: 0 0 10px rgba(163, 230, 53, 0.2);
+}
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
+  pointer-events: none;
+}
+
+/* Categories Slider */
+.category-slider {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+}
+
+.category-slider::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+.category-badge {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.category-badge.active {
+  background: var(--sports-gradient);
+  color: white;
+  border-color: transparent;
+  box-shadow: var(--shadow-glow-sports);
+}
+
+.category-badge.active.military-theme {
+  background: var(--military-gradient);
+  color: #090d16;
+  border-color: transparent;
+  box-shadow: var(--shadow-glow-military);
+  font-weight: 700;
+}
+
+/* Tournament Cards List */
+.tournament-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tournament-card {
+  padding: 16px;
+  cursor: pointer;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.status-badge.ongoing {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.status-badge.upcoming {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.status-badge.completed {
+  background: rgba(107, 114, 128, 0.15);
+  color: #9ca3af;
+  border: 1px solid rgba(107, 114, 128, 0.3);
+}
+
+.tournament-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.info-row i {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* Detail View Layout */
+.detail-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.detail-nav-tabs {
+  display: flex;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 16px;
+  gap: 4px;
+  width: 100%;
+}
+
+.detail-tab {
+  flex: 1;
+  text-align: center;
+  padding: 10px 4px;
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.detail-tab:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.detail-tab.active {
+  color: white;
+  background: var(--sports-primary);
+  box-shadow: var(--shadow-glow-sports);
+  font-weight: 700;
+}
+
+.detail-tab.active.military-theme,
+.mil-sub-tab.active {
+  color: #090d16;
+  background: var(--military-gradient);
+  box-shadow: var(--shadow-glow-military);
+  font-weight: 700;
+}
+
+
+
+.detail-tab-content {
+  display: none;
+}
+
+.detail-tab-content.active {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Sub-tabs / Schedules List */
+.schedule-day-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.day-tab {
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  font-size: 12px;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.day-tab.active {
+  background: var(--sports-primary);
+  color: white;
+  border-color: transparent;
+}
+
+.day-tab.active.military-theme {
+  background: var(--military-primary);
+  color: #090d16;
+  font-weight: 700;
+}
+
+.match-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.match-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.match-category {
+  font-weight: 700;
+  color: var(--sports-primary);
+}
+
+.match-category.military-theme {
+  color: var(--military-primary);
+}
+
+.match-teams {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.match-score {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--accent-gold);
+  background: rgba(245, 158, 11, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Bracket Tab Style */
+.bracket-preview {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  position: relative;
+  height: 200px;
+  background: #111827;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.bracket-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.bracket-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.bracket-overlay i {
+  font-size: 28px;
+  color: var(--sports-primary);
+}
+
+.bracket-overlay.military-theme i {
+  color: var(--military-primary);
+}
+
+/* Location Tab Map Box */
+.map-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map-placeholder-bg {
+  height: 180px;
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  gap: 12px;
+  border: 1px dashed var(--border-color);
+}
+
+.map-placeholder-bg i {
+  font-size: 32px;
+  color: var(--sports-primary);
+}
+
+.map-placeholder-bg.military-theme i {
+  color: var(--military-primary);
+}
+
+.map-info-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: white;
+}
+
+.map-address {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  word-break: keep-all;
+}
+
+.map-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.map-actions .btn {
+  flex: 1;
+}
+
+/* Military Specific Styles */
+.military-nav-container {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.mil-tab {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.mil-tab.active {
+  background: var(--military-gradient);
+  color: #090d16;
+  border-color: transparent;
+  font-weight: 700;
+  box-shadow: var(--shadow-glow-military);
+}
+
+/* Checklist / Planner */
+.checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.checklist-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.checklist-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid var(--text-muted);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: transparent;
+  transition: var(--transition-fast);
+}
+
+.checklist-item.checked .checklist-checkbox {
+  background: var(--military-primary);
+  border-color: var(--military-primary);
+  color: #090d16;
+}
+
+.checklist-item.checked .checklist-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.checklist-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+/* Directory list (pensions, restaurants) */
+.directory-card {
+  display: flex;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  position: relative;
+}
+
+.directory-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #1e293b;
+}
+
+.directory-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.directory-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.directory-tag {
+  font-size: 10px;
+  background: rgba(163, 230, 53, 0.1);
+  color: var(--military-primary);
+  border: 1px solid rgba(163, 230, 53, 0.2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.directory-desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.directory-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.directory-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.directory-meta i {
+  font-size: 12px;
+}
+
+.directory-meta .star {
+  color: var(--accent-gold);
+}
+
+.directory-call-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(163, 230, 53, 0.1);
+  border: 1px solid rgba(163, 230, 53, 0.2);
+  color: var(--military-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-decoration: none;
+}
+
+.directory-call-btn:hover {
+  background: var(--military-gradient);
+  color: #090d16;
+}
+
+/* Zoomable Bracket Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 200;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  z-index: 10;
+}
+
+.modal-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-img-container {
+  cursor: grab;
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+.modal-img-container:active {
+  cursor: grabbing;
+}
+
+.modal-img-container img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.modal-controls {
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 30px;
+  border: 1px solid var(--border-color);
+  z-index: 10;
+}
+
+.modal-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+}
+
+.modal-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Toast Message Notification */
+.toast {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(31, 41, 55, 0.95);
+  border: 1px solid var(--border-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast-icon {
+  color: var(--military-primary);
+}
+
+.toast-icon.sports-theme {
+  color: var(--sports-primary);
+}
+
+/* Bus Info and Collapsed sections */
+.bus-item {
+  border-bottom: 1px solid var(--border-color);
+  padding: 10px 0;
+}
+.bus-item:last-child {
+  border-bottom: none;
+}
+.bus-route {
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+}
+.bus-time {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Helper spacing utility classes */
+.mb-2 { margin-bottom: 8px; }
+.mb-4 { margin-bottom: 16px; }
+.mt-4 { margin-top: 16px; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Scroll Progress Bar styling */
+.scroll-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sports-primary) 0%, var(--military-primary) 100%);
+  z-index: 60;
+  transition: width 0.1s ease-out;
+}
+
+/* Floating Scroll-to-Top FAB Button styling */
+.scroll-top-btn {
+  position: absolute;
+  bottom: 84px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(9, 13, 22, 0.85);
+  border: 1px solid var(--border-color);
+  color: var(--military-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 99;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 10px rgba(216, 252, 56, 0.15);
+}
+
+.scroll-top-btn.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn:hover {
+  background: var(--military-gradient);
+  color: #090d16;
+  box-shadow: var(--shadow-glow-military);
+  transform: translateY(-2px) scale(1.05);
+}
+
+/* Slider Horizontal Wrapper & Buttons */
+.category-slider-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.category-slider-wrapper .category-slider,
+.category-slider-wrapper .military-nav-container {
+  width: 100%;
+  padding-left: 28px;
+  padding-right: 28px;
+}
+
+.slide-ctrl-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.6;
+  transition: var(--transition-fast);
+}
+
+.slide-ctrl-btn:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slide-ctrl-btn.prev {
+  left: 0;
+}
+
+.slide-ctrl-btn.next {
+  right: 0;
+}
+
+
+/* ==================== DESKTOP STYLING (min-width: 768px) ==================== */
+@media (min-width: 768px) {
+  body {
+    align-items: center;
+    padding: 40px 20px;
+  }
+
+  #app-container {
+    max-width: 1024px;
+    min-height: calc(100vh - 80px);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    padding-bottom: 0; /* No bottom nav space on desktop */
+  }
+
+  header {
+    height: 70px;
+    padding: 14px 32px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+  }
+
+  .badge-demo {
+    display: none; /* Hide MVP badge to make room for top nav */
+  }
+
+  /* Desktop Top Navigation (Transformed from Bottom Nav) */
+  .bottom-nav {
+    position: absolute;
+    top: 0;
+    bottom: auto;
+    left: auto;
+    right: 32px;
+    transform: none;
+    width: auto;
+    height: 70px;
+    border-top: none;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding-bottom: 0;
+    gap: 8px;
+    display: flex;
+  }
+
+  .nav-item {
+    width: auto;
+    height: 100%;
+    padding: 0 16px;
+    flex-direction: row;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    transition: var(--transition-fast);
+  }
+
+  .nav-item.active {
+    border-bottom-color: var(--sports-primary);
+  }
+
+  .nav-item.active.military-theme {
+    border-bottom-color: var(--military-primary);
+  }
+
+  .nav-item.active::after {
+    display: none !important; /* Hide mobile active dot */
+  }
+
+  .nav-item i {
+    font-size: 18px;
+  }
+
+  main {
+    padding: 28px;
+    gap: 28px;
+  }
+
+  /* Home Section Desktop Layout */
+  .home-desktop-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .home-desktop-row > * {
+    margin-bottom: 0 !important;
+    height: 100%;
+  }
+
+  .selector-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .selector-card {
+    padding: 32px 24px;
+  }
+
+  .selector-card h3 {
+    font-size: 18px;
+  }
+
+  /* Sports View Grid */
+  .tournament-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Military View Grid */
+  #checklist-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  #pension-list-container,
+  #food-list-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Detail Sub-views Schedules (Flex-row wrap) */
+  #detail-tab-schedule.active {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  #detail-tab-schedule.active > .glass-card {
+    flex: 1;
+    min-width: 320px;
+  }
+
+  /* Detail Header spacing */
+  .detail-header {
+    margin-bottom: 12px;
+  }
+
+  .detail-nav-tabs {
+    margin-bottom: 24px;
+  }
+
+  /* Map and Location Layout */
+  #detail-tab-location .map-box {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  #detail-tab-location .map-placeholder-bg {
+    height: 240px;
+    margin-bottom: 0;
+  }
+
+  /* Tour / Info View Grids */
+  #info-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  #info-view > * {
+    margin-bottom: 0;
+  }
+  
+  .quick-utilities {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .quick-utilities a {
+    margin-bottom: 0;
+  }
+
+}
+
