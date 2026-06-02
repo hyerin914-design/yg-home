@@ -5,110 +5,232 @@
 const TOURNAMENTS_DATA = [
   {
     id: 1,
-    title: "제24회 양구 국토정중앙배 전국 동호인 테니스 대회",
+    title: "2026년도 ITF 양구국제주니어 테니스투어대회(J60)",
     status: "ongoing", // ongoing, upcoming, completed
     statusKo: "진행중",
     category: "테니스",
-    date: "2026.06.01 ~ 2026.06.05",
-    venue: "양구 테니스파크 (실내/외 코트)",
-    address: "강원특별자치도 양구군 양구읍 스포츠로 81",
-    mapQuery: "양구테니스파크",
-    mapUrl: "https://m.map.naver.com/search2/search.naver?query=양구테니스파크",
-    kakaoMapUrl: "https://map.kakao.com/?q=양구테니스파크",
-    contact: "양구군 테니스협회 (033-481-0000)",
-    organizer: "양구군 체육회, 양구군 테니스협회",
-    description: "전국의 테니스 동호인들이 한자리에 모여 실력을 겨루는 대규모 대회입니다. 개인전 단식, 복식 및 단체전 경기가 진행됩니다.",
+    date: "2026.06.01 ~ 2026.06.08",
+    venue: "초롱이 테니스장 실외",
+    address: "강원특별자치도 양구군 양구읍 함춘로 102",
+    mapQuery: "초롱이테니스장",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("초롱이테니스장"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("초롱이테니스장"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "대한테니스협회, ITF / 대한테니스협회",
+    description: "국제테니스연맹(ITF) 공인 주니어 국제 대회로, 전 세계 유망주 선수들이 참가하여 주니어 세계 랭킹 포인트를 두고 치열하게 경쟁하는 권위 있는 대회입니다.",
     schedules: [
-      { day: "Day 1 (6/1)", date: "6월 1일 (월)", matches: ["남자부 단식 64강전 (09:00~18:00)", "개회식 및 환영 만찬 (18:30, 문화체육회관)"] },
-      { day: "Day 2 (6/2)", date: "6월 2일 (화)", matches: ["남자부 32강전 및 16강전 (09:00~17:00)", "여자부 복식 1회전 (10:00~18:00)"] },
-      { day: "Day 3 (6/3)", date: "6월 3일 (수)", matches: ["남/여 복식 본선 토너먼트 (09:30~17:00)", "혼합복식 예선전 (11:00~)"] },
-      { day: "Day 4 (6/4)", date: "6월 4일 (목)", matches: ["각 부문 준결승전 (10:00~16:00)", "부문별 순위 결정전"] },
-      { day: "Day 5 (6/5)", date: "6월 5일 (금)", matches: ["남/여 개인 단식/복식 결승전 (10:00~13:00)", "시상식 및 폐회식 (13:30, 시상식장)"] }
+      { day: "Day 1 (6/1)", date: "6월 1일 (월)", matches: ["남/여 예선전 및 대진표 확정 (09:00 ~ 17:00)", "선수단 등록 및 오리엔테이션"] },
+      { day: "Day 2 (6/2)", date: "6월 2일 (화)", matches: ["남/여 단식 본선 64강전 (09:00 ~ 18:00)", "복식 조 추첨식"] },
+      { day: "Day 3 (6/3)", date: "6월 3일 (수)", matches: ["남/여 단식 본선 32강전 및 복식 1회전 (09:30 ~ 17:00)"] },
+      { day: "Day 4 (6/4)", date: "6월 4일 (목)", matches: ["남/여 단식 16강전 및 복식 8강전 (09:30 ~ 17:00)"] },
+      { day: "Day 5 (6/5)", date: "6월 5일 (금)", matches: ["남/여 단식 8강전 및 복식 준결승전 (10:00 ~ 16:00)"] },
+      { day: "Day 6 (6/6)", date: "6월 6일 (토)", matches: ["남/여 단식 준결승전 및 복식 결승전/시상식 (10:00 ~ 15:00)"] },
+      { day: "Day 7 (6/7)", date: "6월 7일 (일)", matches: ["남/여 단식 결승전 및 전체 시상식, 폐회식 (10:00 ~ 13:00)"] }
     ],
     liveMatches: [
-      { id: "m1", time: "09:30", category: "남자 복식 32강 (A코트)", teams: "김태우/박준서 vs 이재현/최도현", score: "6-4, 6-3", status: "종료" },
-      { id: "m2", time: "11:00", category: "여자 단식 32강 (B코트)", teams: "이지혜 vs 한소윤", score: "2-6, 1-6", status: "종료" },
-      { id: "m3", time: "13:20", category: "남자 단식 32강 (C코트)", teams: "정성환 vs 최우식", score: "6-7, 6-4, 3-2", status: "진행중" },
-      { id: "m4", time: "15:00", category: "남자 단식 32강 (A코트)", teams: "홍지민 vs 박성진", score: "- : -", status: "대기" },
-      { id: "m5", time: "16:20", category: "여자 복식 16강 (B코트)", teams: "김도희/윤민아 vs 서유경/정혜선", score: "- : -", status: "대기" }
+      { id: "m1", time: "09:30", category: "남자 단식 64강 (1코트)", teams: "김태우 (KOR) vs 타카시 (JPN)", score: "6-2, 6-4", status: "종료" },
+      { id: "m2", time: "11:00", category: "여자 단식 64강 (2코트)", teams: "이지혜 (KOR) vs 리나 (CHN)", score: "3-6, 4-6", status: "종료" },
+      { id: "m3", time: "13:20", category: "남자 단식 64강 (3코트)", teams: "정성환 (KOR) vs 아르투르 (FRA)", score: "6-7, 6-4, 4-2", status: "진행중" },
+      { id: "m4", time: "15:00", category: "남자 단식 64강 (1코트)", teams: "홍지민 (KOR) vs 존슨 (USA)", score: "- : -", status: "대기" },
+      { id: "m5", time: "16:20", category: "여자 복식 32강 (2코트)", teams: "김도희/윤민아 (KOR) vs 첸/왕 (CHN)", score: "- : -", status: "대기" }
     ],
     bracketType: "tennis-singles",
     downloadUrl: "#"
   },
   {
     id: 2,
-    title: "2026 백두산배 전국 유소년 축구 챔피언십",
+    title: "양정모 올림픽제패기념 제51회 KBS배 전국레슬링대회",
+    status: "upcoming",
+    statusKo: "예정됨",
+    category: "레슬링",
+    date: "2026.06.12 ~ 2026.06.18",
+    venue: "양구문화체육회관",
+    address: "강원특별자치도 양구군 양구읍 양록길23번길 17",
+    mapQuery: "양구문화체육회관",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("양구문화체육회관"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("양구문화체육회관"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "대한레슬링협회 / 대한레슬링협회",
+    description: "대한민국 최초의 올림픽 금메달리스트 양정모 선수의 업적을 기리는 권위 있는 전국 대회입니다. 초등부부터 일반부까지 전국의 레슬링 우수 인재들이 한자리에 모여 자유형 및 그레코로만형 최강자를 가립니다.",
+    schedules: [
+      { day: "Day 1 (6/12)", date: "6월 12일 (금)", matches: ["개회식 및 초·중등부 그레코로만형 예선 (10:00 ~)", "개막 세레머니 및 대표자 회의"] },
+      { day: "Day 2 (6/13)", date: "6월 13일 (토)", matches: ["중·고등부 그레코로만형 및 자유형 예선/결승전 (09:00 ~ 17:00)"] },
+      { day: "Day 3 (6/14)", date: "6월 14일 (일)", matches: ["고등부 자유형 결승전 및 시상식", "대학부 그레코로만형 경기 개막"] },
+      { day: "Day 4 (6/15)", date: "6월 15일 (월)", matches: ["대학부 및 일반부 그레코로만형 체급별 결승전 (10:00 ~ 17:00)"] },
+      { day: "Day 5 (6/16)", date: "6월 16일 (화)", matches: ["남/여 일반부 자유형 예선전 (09:30 ~ 17:00)"] },
+      { day: "Day 6 (6/17)", date: "6월 17일 (수)", matches: ["일반부 자유형 준결승 및 결승전 경기"] },
+      { day: "Day 7 (6/18)", date: "6월 18일 (목)", matches: ["부문별 최우수 선수 시상 및 대회 종합 폐막식 (11:00)"] }
+    ],
+    liveMatches: [],
+    bracketType: "wrestling-bracket",
+    downloadUrl: "#"
+  },
+  {
+    id: 3,
+    title: "2026 청춘양구 중학교 1학년 축구 페스티벌",
     status: "upcoming",
     statusKo: "예정됨",
     category: "축구",
-    date: "2026.06.12 ~ 2026.06.15",
-    venue: "양구 종합운동장 및 보조구장",
+    date: "2026.06.13 ~ 2026.06.16",
+    venue: "축구보조구장(B,C구장)",
     address: "강원특별자치도 양구군 양구읍 스포츠로 136",
     mapQuery: "양구종합운동장",
-    mapUrl: "https://m.map.naver.com/search2/search.naver?query=양구종합운동장",
-    kakaoMapUrl: "https://map.kakao.com/?q=양구종합운동장",
-    contact: "양구군 축구협회 (033-482-1111)",
-    organizer: "한국유소년축구연맹, 양구군 체육회",
-    description: "대한민국 축구의 미래를 책임질 전국 유소년(U-12, U-10) 클럽들이 모여 자웅을 겨루는 페스티벌 형식의 축구 대회입니다.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("양구종합운동장"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("양구종합운동장"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "리본코퍼레이션랩 / 리본코퍼레이션랩",
+    description: "대한민국 축구의 꿈나무들인 전국 중학교 1학년 선수단이 한자리에 모여 경기를 치르는 유소년 축구 축제입니다. 승패 위주의 경기에서 벗어나 건강한 스포츠맨십과 기량 발전을 도모하는 페스티벌 형태로 운영됩니다.",
     schedules: [
-      { day: "Day 1 (6/12)", date: "6월 12일 (금)", matches: ["예선 리그 1회전 (10:00~17:00)", "참가팀 환영 리셉션 (18:00)"] },
-      { day: "Day 2 (6/13)", date: "6월 13일 (토)", matches: ["예선 리그 2회전 및 본선 진출팀 결정", "클럽 친선 교류 행사"] },
-      { day: "Day 3 (6/14)", date: "6월 14일 (일)", matches: ["본선 토너먼트 (8강전 ~ 준결승전)", "이벤트 경기 (지도자/학부모 매치)"] },
-      { day: "Day 4 (6/15)", date: "6월 15일 (월)", matches: ["U-10 결승전 (10:00, 종합운동장)", "U-12 결승전 (11:30, 종합운동장)", "시상식 및 폐막식 (13:00)"] }
+      { day: "Day 1 (6/13)", date: "6월 13일 (토)", matches: ["예선 조별 리그 1라운드 경기 (09:00 ~ 17:00)", "참가팀 환영 리셉션"] },
+      { day: "Day 2 (6/14)", date: "6월 14일 (일)", matches: ["예선 조별 리그 2라운드 경기 및 지역 문화 탐방 행사"] },
+      { day: "Day 3 (6/15)", date: "6월 15일 (월)", matches: ["예선 최종전 및 순위별 토너먼트 (8강~준결승전)"] },
+      { day: "Day 4 (6/16)", date: "6월 16일 (화)", matches: ["그룹별 최종 결승전 (10:00, 종합운동장)", "종합 시상식 및 폐막 세레머니 (13:00)"] }
     ],
     liveMatches: [],
     bracketType: "soccer-groups",
     downloadUrl: "#"
   },
   {
-    id: 3,
-    title: "제18회 한국 실업 역도 연맹회장배 역도대회",
+    id: 4,
+    title: "하나증권 제5회 대한테니스협회장배 (10,12세부)",
+    status: "upcoming",
+    statusKo: "예정됨",
+    category: "테니스",
+    date: "2026.06.16 ~ 2026.06.21",
+    venue: "초롱이 테니스장 실외",
+    address: "강원특별자치도 양구군 양구읍 함춘로 102",
+    mapQuery: "초롱이테니스장",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("초롱이테니스장"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("초롱이테니스장"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "대한테니스협회 / 대한테니스협회",
+    description: "테니스 미래를 이끌어갈 10세부 및 12세부 주니어 꿈나무들이 대거 참여하는 대회입니다. 남녀 단식 및 복식 경기가 토너먼트 형태로 활기차게 운영됩니다.",
+    schedules: [
+      { day: "Day 1 (6/16)", date: "6월 16일 (화)", matches: ["각 연령별 남녀 단식 예선 조별 리그전 (09:00 ~)"] },
+      { day: "Day 2 (6/17)", date: "6월 17일 (수)", matches: ["단식 예선 리그 최종전 및 복식 대진표 확정"] },
+      { day: "Day 3 (6/18)", date: "6월 18일 (목)", matches: ["단식 본선 1, 2회전 및 남녀 복식 1회전 경기"] },
+      { day: "Day 4 (6/19)", date: "6월 19일 (금)", matches: ["단식 16강 및 8강 토너먼트전", "복식 본선 2회전 및 8강전"] },
+      { day: "Day 5 (6/20)", date: "6월 20일 (토)", matches: ["단/복식 준결승 경기 및 이벤트 게임 (10:00 ~)"] },
+      { day: "Day 6 (6/21)", date: "6월 21일 (일)", matches: ["단식 및 복식 결승전, 종합 시상식 (10:00 ~ 13:00)"] }
+    ],
+    liveMatches: [],
+    bracketType: "tennis-singles",
+    downloadUrl: "#"
+  },
+  {
+    id: 5,
+    title: "2026 양구사과와 함께하는 전국 초등티볼대회",
+    status: "upcoming",
+    statusKo: "예정됨",
+    category: "티볼",
+    date: "2026.06.19 ~ 2026.06.21",
+    venue: "하리야구장",
+    address: "강원특별자치도 양구군 양구읍 하리 299-5",
+    mapQuery: "하리야구장",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("하리야구장"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("하리야구장"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "전국대학야구협의회(KUBA) / 전국대학야구협의회(KUBA)",
+    description: "청정 양구의 명품 특산물인 '양구사과'를 알리고, 전국의 초등학교 티볼 클럽들이 모여 화합하는 어린이 스포츠 축제입니다. 누구나 쉽고 재미있게 참여하는 안전한 야구형 뉴스포츠 경기입니다.",
+    schedules: [
+      { day: "Day 1 (6/19)", date: "6월 19일 (금)", matches: ["참가팀 접수 및 안전 교육", "경기장 적응 훈련 및 장비 점검"] },
+      { day: "Day 2 (6/20)", date: "6월 20일 (토)", matches: ["예선 A~D조 조별 풀리그 경기 (09:00 ~ 17:00)", "양구사과 체험 부스 운영"] },
+      { day: "Day 3 (6/21)", date: "6월 21일 (일)", matches: ["본선 8강/4강 토너먼트", "대망의 결승전 및 종합 시상식 (14:00)"] }
+    ],
+    liveMatches: [],
+    bracketType: "tball-bracket",
+    downloadUrl: "#"
+  },
+  {
+    id: 6,
+    title: "제98회 전국남자역도선수권대회 및 제40회 전국여자역도선수권대회",
     status: "completed",
     statusKo: "종료",
     category: "역도",
-    date: "2026.05.25 ~ 2026.05.28",
-    venue: "양구 용하체육관 (역도 전용 경기장)",
+    date: "2026.05.25 ~ 2026.05.31",
+    venue: "용하체육관",
     address: "강원특별자치도 양구군 국토정중앙면 정중앙로 609",
     mapQuery: "용하체육관",
-    mapUrl: "https://m.map.naver.com/search2/search.naver?query=용하체육관",
-    kakaoMapUrl: "https://map.kakao.com/?q=용하체육관",
-    contact: "대한역도연맹 (02-420-0000)",
-    organizer: "한국실업역도연맹, 대한역도연맹",
-    description: "대한민국 실업 강자들이 대거 출전하는 고품격 역도 대회로 올림픽 국가대표 선발 포인트가 부여되는 권위 있는 경기입니다.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("용하체육관"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("용하체육관"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "대한역도연맹 / 대한역도연맹",
+    description: "대한민국 역사들의 최대 제전으로, 중·고·대·일반부 전국의 엘리트 역도 선수들이 총출동하는 공인 선수권 대회입니다. 한국 신기록 및 다수의 대회 신기록을 쏟아내는 수준 높은 경기들이 진행되었습니다.",
     schedules: [
-      { day: "Day 1 (5/25)", date: "5월 25일 (월)", matches: ["경량급 인상/용상 예선 및 결승 (55kg, 61kg)", "남자 일반부 67kg급 경기"] },
-      { day: "Day 2 (5/26)", date: "5월 26일 (화)", matches: ["중량급 경기 (73kg, 81kg, 89kg)", "여자 일반부 55kg, 59kg 경기"] },
-      { day: "Day 3 (5/27)", date: "5월 27일 (수)", matches: ["무제한급 경기 (+102kg, +109kg)", "단체 종합 점수 집계"] },
-      { day: "Day 4 (5/28)", date: "5월 28일 (목)", matches: ["부문별 최우수 선수 시상식 및 폐막 (11:00)"] }
+      { day: "Day 1 (5/25)", date: "5월 25일 (월)", matches: ["남자 중·고등부 경량급 인상/용상 결선 (09:00~)", "개회식 및 축하 공연"] },
+      { day: "Day 2 (5/26)", date: "5월 26일 (화)", matches: ["여자 중·고등부 전 체급 경기 및 시상식"] },
+      { day: "Day 3 (5/27)", date: "5월 27일 (수)", matches: ["남자 대학부 및 일반부 중강급 경기 진행"] },
+      { day: "Day 4 (5/28)", date: "5월 28일 (목)", matches: ["여자 대학부 및 일반부 체급별 예선/결선"] },
+      { day: "Day 5 (5/29)", date: "5월 29일 (금)", matches: ["남자 일반부 중량급 (89kg, 102kg) 경기"] },
+      { day: "Day 6 (5/30)", date: "5월 30일 (토)", matches: ["남녀 일반부 무제한급 경기 및 신기록 수립"] },
+      { day: "Day 7 (5/31)", date: "5월 31일 (일)", matches: ["종합 성적 집계 및 모범 선수/지도자 시상식, 대회 폐막"] }
     ],
     liveMatches: [],
     bracketType: "weightlifting-table",
     downloadUrl: "#"
   },
   {
-    id: 4,
-    title: "2026 양구 오픈 배구 선수권 대회",
+    id: 7,
+    title: "하나증권 제5회 대한테니스협회장배 (14,16,18세부)",
     status: "upcoming",
     statusKo: "예정됨",
-    category: "배구",
-    date: "2026.06.22 ~ 2026.06.26",
-    venue: "양구 청춘체육관",
-    address: "강원특별자치도 양구군 양구읍 스포츠로 125",
-    mapQuery: "양구청춘체육관",
-    mapUrl: "https://m.map.naver.com/search2/search.naver?query=양구청춘체육관",
-    kakaoMapUrl: "https://map.kakao.com/?q=양구청춘체육관",
-    contact: "양구군 배구협회 (033-481-2222)",
-    organizer: "대한배구협회, 양구군",
-    description: "대학 및 실업 배구 강호들이 양구에 모여 역동적인 코트 위의 혈투를 펼치는 오픈 선수권 대회입니다.",
+    category: "테니스",
+    date: "2026.06.22 ~ 2026.07.01",
+    venue: "초롱이 테니스장 실외",
+    address: "강원특별자치도 양구군 양구읍 함춘로 102",
+    mapQuery: "초롱이테니스장",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("초롱이테니스장"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("초롱이테니스장"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "대한테니스협회 / 대한테니스협회",
+    description: "대한테니스협회 주관으로 진행되는 공인 주니어 엘리트 대회입니다. 중·고등부 연령에 해당하는 전국 최고의 선수들이 참가하여 단식 및 복식 왕좌를 가립니다.",
     schedules: [
-      { day: "Day 1 (6/22)", date: "6월 22일 (월)", matches: ["조별 라운드 로빈 예선 1일차"] },
-      { day: "Day 2 (6/23)", date: "6월 23일 (화)", matches: ["조별 라운드 로빈 예선 2일차"] },
-      { day: "Day 3 (6/24)", date: "6월 24일 (수)", matches: ["조별 라운드 로빈 예선 3일차 및 8강 대진 결정"] },
-      { day: "Day 4 (6/25)", date: "6월 25일 (목)", matches: ["토너먼트 8강 및 준결승전"] },
-      { day: "Day 5 (6/26)", date: "6월 26일 (금)", matches: ["남/여부 대망의 결승전 및 시상식"] }
+      { day: "Day 1 (6/22)", date: "6월 22일 (월)", matches: ["남/여 14, 16, 18세부 단식 예선 1회전 (09:00 ~)"] },
+      { day: "Day 2 (6/23)", date: "6월 23일 (화)", matches: ["단식 예선 최종 예선 및 본선 진출자 대진 추첨"] },
+      { day: "Day 3 (6/24)", date: "6월 24일 (수)", matches: ["본선 단식 1회전 및 남녀 복식 대진표 등록"] },
+      { day: "Day 4 (6/25)", date: "6월 25일 (목)", matches: ["본선 단식 2회전 및 남녀 복식 1회전 경기"] },
+      { day: "Day 5 (6/26)", date: "6월 26일 (금)", matches: ["단식 32강 및 복식 16강 본선 매치"] },
+      { day: "Day 6 (6/27)", date: "6월 27일 (토)", matches: ["단식 16강/8강 및 복식 8강전 경기 진행"] },
+      { day: "Day 7 (6/28)", date: "6월 28일 (일)", matches: ["단식 준결승 및 복식 준결승 경기"] },
+      { day: "Day 8 (6/29)", date: "6월 29일 (월)", matches: ["복식 결승전 경기 및 복식 시상식"] },
+      { day: "Day 9 (6/30)", date: "6월 30일 (화)", matches: ["단식 결승전 경기 진행"] },
+      { day: "Day 10 (7/1)", date: "7월 1일 (수)", matches: ["단식 잔여 경기 완료 및 종합 시상식, 대회 폐막"] }
     ],
     liveMatches: [],
-    bracketType: "volleyball-bracket",
+    bracketType: "tennis-singles",
+    downloadUrl: "#"
+  },
+  {
+    id: 8,
+    title: "2026 전국실업대항 및 학교대항(대학) 배드민턴 선수권대회",
+    status: "upcoming",
+    statusKo: "예정됨",
+    category: "배드민턴",
+    date: "2026.06.23 ~ 2026.07.04",
+    venue: "청춘 체육관",
+    address: "강원특별자치도 양구군 양구읍 함춘로 64",
+    mapQuery: "양구청춘체육관",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("양구청춘체육관"),
+    kakaoMapUrl: "https://map.kakao.com/?q=" + encodeURIComponent("양구청춘체육관"),
+    contact: "(재)양구군스포츠재단 (033-482-9607)",
+    organizer: "한국실업배드민턴연맹 / 한국실업배드민턴연맹",
+    description: "전국의 대학팀 및 실업팀이 모두 참가하는 배드민턴 시즌 최강의 대회입니다. 대학부/실업부 단체전 및 남녀 단식, 복식, 혼합복식 개인전 타이틀을 다투는 최고 수준의 경기입니다.",
+    schedules: [
+      { day: "Day 1 (6/23)", date: "6월 23일 (화)", matches: ["대학부 단체 예선 1라운드전 (09:00 ~)"] },
+      { day: "Day 2 (6/24)", date: "6월 24일 (수)", matches: ["실업부 단체 예선 1라운드전 경기 개시"] },
+      { day: "Day 3 (6/25)", date: "6월 25일 (목)", matches: ["대학부/실업부 단체전 준결승 토너먼트"] },
+      { day: "Day 4 (6/26)", date: "6월 26일 (금)", matches: ["단체전 최종 결승 및 시상식, 개인전 대진 추첨"] },
+      { day: "Day 5 (6/27)", date: "6월 27일 (토)", matches: ["개인전 남녀 단식/복식 예선전 경기"] },
+      { day: "Day 6 (6/28)", date: "6월 28일 (일)", matches: ["개인전 단/복식 64강 및 32강 경기"] },
+      { day: "Day 7 (6/29)", date: "6월 29일 (월)", matches: ["개인전 혼합복식 조별 예선 시작"] },
+      { day: "Day 8 (6/30)", date: "6월 30일 (화)", matches: ["개인전 단식/복식 16강전 경기"] },
+      { day: "Day 9 (7/1)", date: "7월 1일 (수)", matches: ["개인전 체급별 8강 및 준결승전 경기"] },
+      { day: "Day 10 (7/2)", date: "7월 2일 (목)", matches: ["혼합복식 및 개인 복식 결승전"] },
+      { day: "Day 11 (7/3)", date: "7월 3일 (금)", matches: ["남녀 개인 단식 최종 결승전"] },
+      { day: "Day 12 (7/4)", date: "7월 4일 (토)", matches: ["대회 전체 정리, 종합 시상 및 폐막식 (11:00)"] }
+    ],
+    liveMatches: [],
+    bracketType: "badminton-bracket",
     downloadUrl: "#"
   }
 ];
@@ -223,7 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Setup Scroll Progress & Top Button Controls
   setupScrollControls();
+
+  // Fetch real-time weather
+  updateRealTimeWeather();
 });
+
 
 // ==================== NAVIGATION / ROUTING ====================
 
@@ -280,7 +406,7 @@ function updateBottomNavActiveState() {
 // ==================== SPORTS SECTION LOGIC ====================
 
 function renderSportsCategories() {
-  const categories = ['전체', '테니스', '축구', '역도', '배구'];
+  const categories = ['전체', '테니스', '레슬링', '축구', '티볼', '역도', '배드민턴'];
   const container = document.getElementById('sports-categories');
   container.innerHTML = '';
   
@@ -637,8 +763,51 @@ function populateDetailTabContent(tabName) {
           </div>
         </div>
       `;
+    } else if (t.bracketType === 'tball-bracket') {
+      bracketContent = `
+        <div class="glass-card">
+          <h3>⚾ 전국 초등 티볼 예선 조 편성</h3>
+          <p class="subtitle">티볼 리그전 조 편성 현황</p>
+          <div class="flex-col gap-12" style="font-size: 13px; line-height: 1.6; margin-top: 10px;">
+            <div style="background: rgba(59, 130, 246, 0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.15);">
+              <strong style="color: var(--sports-primary); font-size:14px;">예선 A조</strong>
+              <div style="margin-top: 6px; color: var(--text-secondary);">초등 A팀, 초등 B팀, 초등 C팀, 초등 D팀</div>
+            </div>
+            <div style="background: rgba(6, 182, 212, 0.05); padding: 12px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.15);">
+              <strong style="color: var(--sports-secondary); font-size:14px;">예선 B조</strong>
+              <div style="margin-top: 6px; color: var(--text-secondary);">초등 E팀, 초등 F팀, 초등 G팀, 초등 H팀</div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (t.bracketType === 'badminton-bracket') {
+      bracketContent = `
+        <div class="glass-card">
+          <h3>🏸 개인전/단체전 토너먼트 대진표</h3>
+          <p class="subtitle">배드민턴 대진 정보</p>
+          <div class="flex-col gap-8" style="margin-top:10px;">
+            <div class="util-btn" onclick="showToast('대진표를 다운로드합니다.')">
+              <i data-lucide="file-text" style="color: var(--accent-gold);"></i>
+              <span>[공식] 단체전 및 개인전 대진표.pdf</span>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (t.bracketType === 'wrestling-bracket') {
+      bracketContent = `
+        <div class="glass-card">
+          <h3>🤼 체급별 토너먼트 대진 및 기록</h3>
+          <p class="subtitle">체급별 공식 출전 및 대진표 다운로드</p>
+          <div class="flex-col gap-8" style="margin-top:10px;">
+            <div class="util-btn" onclick="showToast('대진표를 다운로드합니다.')">
+              <i data-lucide="file-text" style="color: var(--accent-gold);"></i>
+              <span>[공식] 대회 대진표 및 출전 선수 명단.pdf</span>
+            </div>
+          </div>
+        </div>
+      `;
     } else {
-      // General match table style
+      // General match table style (e.g. weightlifting)
       bracketContent = `
         <div class="glass-card">
           <h3>🏋️ 체급별 공인 기록 대진/기록표</h3>
@@ -1226,4 +1395,89 @@ function scrollSlider(sliderId, offset) {
     });
   }
 }
+
+// Fetch real-time weather from Open-Meteo (Yanggu-eup coordinates)
+async function updateRealTimeWeather() {
+  const weatherWidget = document.getElementById('weather-widget');
+  if (!weatherWidget) return;
+
+  // Make it interactive: click to open official KMA Yanggu-eup weather site
+  weatherWidget.style.cursor = 'pointer';
+  weatherWidget.title = '기상청 상세 날씨 보기 (새 창)';
+  weatherWidget.onclick = () => {
+    window.open('https://www.weather.go.kr/w/index.do#dong/5180025000/38.1100012808218/127.989950629022/%EA%B0%95%EC%9B%90%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%20%EC%96%91%EA%B5%AC%EA%B5%B0%20%EC%96%91%EA%B5%AC%EC%9D%8D/SCH/%EC%96%91%EA%B5%AC%EC%9D%8D', '_blank');
+  };
+
+  try {
+    const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=38.1100&longitude=127.9900&current=temperature_2m,weather_code,relative_humidity_2m&timezone=Asia/Seoul');
+    if (!response.ok) throw new Error('Weather API error');
+    
+    const data = await response.json();
+    const temp = Math.round(data.current.temperature_2m);
+    const code = data.current.weather_code;
+    const humidity = data.current.relative_humidity_2m;
+    
+    const weatherInfo = mapWMOCodeToKorean(code);
+    
+    // Suggest guides based on real weather
+    let activityGuide = '운동하기 좋은 날씨입니다.';
+    if (code >= 50) {
+      activityGuide = '비/눈 예보가 있으니 실내 시설을 권장합니다.';
+    } else if (temp >= 30) {
+      activityGuide = '폭염 주의! 야외 활동 시 수분을 충분히 섭취하세요.';
+    } else if (temp <= 2) {
+      activityGuide = '쌀쌀한 날씨, 야외 관람 시 방한 대책을 세우세요.';
+    } else {
+      activityGuide = `${weatherInfo.desc} • 습도 ${humidity}% • 운동하기 좋은 날씨`;
+    }
+
+    weatherWidget.innerHTML = `
+      <div class="weather-info">
+        <div class="weather-temp">${temp}°C</div>
+        <div class="weather-details">
+          <div class="weather-loc">강원특별자치도 양구군 (실시간)</div>
+          <div class="weather-desc">${activityGuide}</div>
+        </div>
+      </div>
+      <div class="weather-icon-placeholder">${weatherInfo.emoji}</div>
+    `;
+  } catch (error) {
+    console.error('Failed to fetch real-time weather:', error);
+    // Fallback clickable mockup
+    weatherWidget.innerHTML = `
+      <div class="weather-info">
+        <div class="weather-temp">18°C</div>
+        <div class="weather-details">
+          <div class="weather-loc">강원특별자치도 양구군</div>
+          <div class="weather-desc">클릭하시면 기상청 실시간 상세 날씨 페이지로 이동합니다.</div>
+        </div>
+      </div>
+      <div class="weather-icon-placeholder">☀️</div>
+    `;
+  }
+}
+
+function mapWMOCodeToKorean(code) {
+  if (code === 0) return { desc: '맑음', emoji: '☀️' };
+  if (code === 1) return { desc: '대체로 맑음', emoji: '🌤️' };
+  if (code === 2) return { desc: '구름 조금', emoji: '⛅' };
+  if (code === 3) return { desc: '흐림', emoji: '☁️' };
+  if (code === 45 || code === 48) return { desc: '안개', emoji: '🌫️' };
+  if (code >= 51 && code <= 55) return { desc: '이슬비', emoji: '🌦️' };
+  if (code >= 56 && code <= 57) return { desc: '얼어붙는 이슬비', emoji: '🌨️' };
+  if (code === 61) return { desc: '약한 비', emoji: '🌧️' };
+  if (code === 63) return { desc: '보통 비', emoji: '🌧️' };
+  if (code === 65) return { desc: '강한 비', emoji: '☔' };
+  if (code >= 66 && code <= 67) return { desc: '찬 비', emoji: '🌨️' };
+  if (code === 71) return { desc: '약한 눈', emoji: '❄️' };
+  if (code === 73) return { desc: '보통 눈', emoji: '❄️' };
+  if (code === 75) return { desc: '강한 눈', emoji: '☃️' };
+  if (code === 77) return { desc: '싸락눈', emoji: '🌨️' };
+  if (code >= 80 && code <= 82) return { desc: '소나기', emoji: '🌦️' };
+  if (code >= 85 && code <= 86) return { desc: '소낙눈', emoji: '🌨️' };
+  if (code === 95) return { desc: '천둥번개', emoji: '⛈️' };
+  if (code >= 96 && code <= 99) return { desc: '우박을 동반한 뇌우', emoji: '⛈️' };
+  return { desc: '정보 없음', emoji: '☀️' };
+}
+
 

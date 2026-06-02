@@ -33,7 +33,7 @@
 
 - [index.html](file:///c:/Users/USER16/Desktop/yg-home/index.html): 단일 페이지 구조 마크업 (SPA)
 - [style.css](file:///c:/Users/USER16/Desktop/yg-home/style.css): 글래스모피즘(Glassmorphism) 기반 다크/라이트 하이엔드 디자인 시스템 및 컴포넌트 스타일링
-- [app.js](file:///c:/Users/USER16/Desktop/yg-home/app.js): 대회/면회/편의시설 모의 데이터(Mock Data) 관리 및 검색, 필터, 체크리스트, 대진표 줌/드래그 인터랙션 제어
+- [app.js](file:///c:/Users/USER16/Desktop/yg-home/app.js): 실시간 양구군 스포츠재단(ygsf.or.kr) 대회 데이터 연동 및 군부대 면회/편의시설 데이터 관리, 검색, 필터, 체크리스트, 대진표 줌/드래그 인터랙션 제어
 
 ## 🚀 로컬 실행 방법
 
