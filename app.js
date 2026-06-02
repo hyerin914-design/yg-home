@@ -375,11 +375,22 @@ let translateX = 0, translateY = 0;
 // ==================== INITIALIZATION ====================
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Theme from localStorage
+  const savedTheme = localStorage.getItem('yg-theme') || 'dark';
+  if (savedTheme === 'light') {
+    document.body.classList.add('light-mode');
+  } else {
+    document.body.classList.remove('light-mode');
+  }
+
   // Initialize Lucide Icons
   lucide.createIcons();
   
   // Set default active buttons on bottom nav
   updateBottomNavActiveState();
+  
+  // Set initial theme icon in HTML
+  updateThemeIcon(savedTheme);
   
   // Render lists
   renderSportsCategories();
@@ -1592,6 +1603,28 @@ function mapWMOCodeToKorean(code) {
   if (code === 95) return { desc: '천둥번개', emoji: '⛈️' };
   if (code >= 96 && code <= 99) return { desc: '우박을 동반한 뇌우', emoji: '⛈️' };
   return { desc: '정보 없음', emoji: '☀️' };
+}
+
+// ==================== THEME TOGGLE LOGIC ====================
+
+function toggleTheme() {
+  const isLight = document.body.classList.toggle('light-mode');
+  const theme = isLight ? 'light' : 'dark';
+  localStorage.setItem('yg-theme', theme);
+  updateThemeIcon(theme);
+  showToast(isLight ? "밝은 모드로 전환되었습니다." : "어두운 모드로 전환되었습니다.");
+}
+
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('theme-icon');
+  if (!icon) return;
+  
+  if (theme === 'light') {
+    icon.setAttribute('data-lucide', 'moon');
+  } else {
+    icon.setAttribute('data-lucide', 'sun');
+  }
+  lucide.createIcons();
 }
 
 
