@@ -42,14 +42,14 @@
           <h2 class="mb-2">🏆 방문 목적 선택</h2>
           <p class="subtitle">해당하는 카테고리를 선택해 빠른 정보를 확인해 보세요.</p>
           <div class="selector-grid">
-            <div class="glass-card selector-card" onclick="switchView('sports')">
+            <div class="glass-card selector-card sports-hover-cursor" onclick="switchView('sports')">
               <div class="selector-icon sports-icon">
                 <i data-lucide="trophy"></i>
               </div>
               <h3>스포츠 대회</h3>
               <p>대회 일정, 대진표, 경기장 위치 확인</p>
             </div>
-            <div class="glass-card selector-card" onclick="switchView('military')">
+            <div class="glass-card selector-card military-hover-cursor" onclick="switchView('military')">
               <div class="selector-icon military-icon">
                 <i data-lucide="shield-check"></i>
               </div>
@@ -107,7 +107,7 @@
       </section>
 
       <!-- ==================== VIEW 2: SPORTS LIST ==================== -->
-      <section id="sports-view" class="view-section">
+      <section id="sports-view" class="view-section sports-cursor">
         
         <div class="search-container">
           <i data-lucide="search" class="search-icon"></i>
@@ -137,7 +137,7 @@
       </section>
 
       <!-- ==================== SUB-VIEW: SPORTS DETAIL ==================== -->
-      <section id="sports-detail-view" class="view-section">
+      <section id="sports-detail-view" class="view-section sports-cursor">
         
         <!-- Detail Header -->
         <div class="detail-header">
@@ -181,7 +181,7 @@
       </section>
 
       <!-- ==================== VIEW 3: MILITARY ==================== -->
-      <section id="military-view" class="view-section">
+      <section id="military-view" class="view-section military-cursor">
         
         <!-- Unit Select tabs with Scroll Controls -->
         <div class="category-slider-wrapper">
@@ -316,11 +316,11 @@
         <i data-lucide="home"></i>
         <span>홈</span>
       </button>
-      <button id="nav-sports" class="nav-item" onclick="switchView('sports')">
+      <button id="nav-sports" class="nav-item sports-hover-cursor" onclick="switchView('sports')">
         <i data-lucide="trophy"></i>
         <span>스포츠대회</span>
       </button>
-      <button id="nav-military" class="nav-item" onclick="switchView('military')">
+      <button id="nav-military" class="nav-item military-hover-cursor" onclick="switchView('military')">
         <i data-lucide="shield"></i>
         <span>군 면회</span>
       </button>

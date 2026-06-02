@@ -834,10 +834,7 @@ function populateDetailTabContent(tabName) {
         <h3>📍 경기장 안내</h3>
         <p class="subtitle">양구 최신 경기 시설 정보</p>
         <div class="map-box">
-          <div class="map-placeholder-bg">
-            <i data-lucide="navigation"></i>
-            <span>양구 정밀 2D 안내 지도 (네이버 맵 연계)</span>
-          </div>
+          <iframe class="map-iframe" src="https://maps.google.com/maps?q=${encodeURIComponent(t.address)}&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
           <div class="map-info-title">${t.venue}</div>
           <div class="map-address">
             <strong>주소:</strong> ${t.address}
@@ -983,10 +980,7 @@ function renderMilitaryContent() {
         <h3>📍 수료식장(신병교육대) 위치 및 딥링크</h3>
         <p class="subtitle">위치안내 및 지도 서비스 연동</p>
         <div class="map-box">
-          <div class="map-placeholder-bg military-theme">
-            <i data-lucide="shield"></i>
-            <span>백두산 신병교육대 정밀 지도</span>
-          </div>
+          <iframe class="map-iframe" src="https://maps.google.com/maps?q=${encodeURIComponent(u.address)}&t=&z=16&ie=UTF8&iwloc=&output=embed" loading="lazy"></iframe>
           <div class="map-info-title">${u.name}</div>
           <div class="map-address">${u.address}</div>
           <div class="map-actions">
