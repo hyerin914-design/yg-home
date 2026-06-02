@@ -33,7 +33,7 @@
         
         <!-- Hero Banner -->
         <div class="hero-banner">
-          <h1 class="hero-title">양구군 방문을<br>환영합니다</h1>
+          <h1 class="hero-title"><span class="neon-text">양구군</span> 방문을<br>환영합니다</h1>
           <p class="hero-desc mt-4">스포츠 참가자 및 군 장병 면회객을 위한<br>실시간 정보 가이드 서비스</p>
         </div>
 
@@ -43,6 +43,7 @@
           <p class="subtitle">해당하는 카테고리를 선택해 빠른 정보를 확인해 보세요.</p>
           <div class="selector-grid">
             <div class="glass-card selector-card sports-hover-cursor" onclick="switchView('sports')">
+              <span class="card-badge-neon">LIVE</span>
               <div class="selector-icon sports-icon">
                 <i data-lucide="trophy"></i>
               </div>
@@ -282,6 +283,29 @@
                 <strong>양구 9경 관광 가이드</strong>
                 <div style="font-size: 10px; color: var(--text-muted);">두타연, 한반도섬, 국토정중앙천문대 등</div>
               </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cafe Directory Section -->
+        <div class="glass-card mt-4">
+          <div class="card-header-icon"><i data-lucide="coffee" style="opacity: 0.12;"></i></div>
+          <h2>☕ 양구군 인기 감성 & 뷰 카페 가이드</h2>
+          <p class="subtitle">파로호 호수 뷰부터 로컬 F&B, 베이커리 빵지순례까지</p>
+          
+          <div class="search-container mb-4">
+            <i data-lucide="search" class="search-icon"></i>
+            <input type="text" id="cafe-search" class="search-input sports-focus" placeholder="카페 이름 또는 키워드 검색...">
+          </div>
+
+          <div class="flex-col gap-12" id="cafe-list-container">
+            <!-- Populated by JS -->
+          </div>
+          
+          <div class="mt-4 text-center">
+            <a href="https://www.ygtour.kr/Home/H40000/H40300/placeList?curationGroup=4&place_class=P009&viewClass=food" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="display: inline-flex; width: auto; font-size: 12px; padding: 6px 12px; gap: 4px;">
+              <i data-lucide="external-link" style="width: 14px; height: 14px;"></i>
+              <span>양구 문화관광 카페 공식 홈페이지 바로가기</span>
             </a>
           </div>
         </div>

@@ -296,6 +296,69 @@ const MILITARY_UNITS = [
   }
 ];
 
+const CAFES_DATA = [
+  {
+    name: "아인53 (Ain 53)",
+    type: "브런치 / 호수뷰",
+    address: "강원특별자치도 양구군 양구읍 파로호로 1007-53",
+    contact: "033-481-5300",
+    rating: 4.8,
+    benefits: "파로호 & 한반도섬이 한눈에 보이는 멋진 전망의 대형 브런치 카페. 주차가 매우 넓고 편리함.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("아인53"),
+    desc: "2층 규모의 대형 목조 건물로 통창을 통해 시원하게 드러나는 파로호의 전경을 보며 정통 브런치와 스페셜티 커피를 즐길 수 있습니다."
+  },
+  {
+    name: "카페 레이크한 (Lake Han)",
+    type: "디저트 / 섬내뷰",
+    address: "강원특별자치도 양구군 양구읍 한반도섬길 61-12",
+    contact: "033-482-0123",
+    rating: 4.7,
+    benefits: "한반도섬 내부에 위치하여 아름다운 호수 산책로와 인접함. 짚라인 및 수상레저 체험 가능.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("카페 레이크한"),
+    desc: "파로호 한반도섬 내부 수변공원에 위치해 있어 잔잔한 호수 물결을 바로 옆에서 바라볼 수 있는 최고의 전망을 선사합니다."
+  },
+  {
+    name: "르쏠레이475",
+    type: "커피 / 루프탑",
+    address: "강원특별자치도 양구군 양구읍 군량길 475",
+    contact: "0507-1355-4750",
+    rating: 4.8,
+    benefits: "양구 시내 전체가 시원하게 내려다보이는 높은 지대의 마운틴 & 시티뷰 루프탑 명소.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("르쏠레이475"),
+    desc: "언덕 위에 위치하여 가슴이 뻥 뚫리는 시야를 제공합니다. 고급 원두를 사용한 아메리카노와 시그니처 크림라떼가 인기 메뉴입니다."
+  },
+  {
+    name: "카페 공삼삼 (033)",
+    type: "로컬 F&B / 갤러리",
+    address: "강원특별자치도 양구군 양구읍 파로호로 875",
+    contact: "033-481-0033",
+    rating: 4.9,
+    benefits: "양구의 대표 농특산물(시래기, 감자)을 활용한 독창적인 식사와 디저트 메뉴를 판매하는 핫플레이스.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("카페 공삼삼"),
+    desc: "빈티지하고 힙한 인테리어 속에서 '시래기 빠에야', '양구 감자 크림 파스타' 등 오직 양구에서만 맛볼 수 있는 로컬 시그니처 다이닝과 굿즈를 제공합니다."
+  },
+  {
+    name: "양구제빵소",
+    type: "베이커리 / 빵지순례",
+    address: "강원특별자치도 양구군 양구읍 함춘로 52",
+    contact: "033-482-8253",
+    rating: 4.7,
+    benefits: "양구 사과로 만든 귀여운 빨간 사과빵과 양구 시래기를 이식한 건강한 시래기 식빵이 시그니처.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("양구제빵소"),
+    desc: "매일 아침 갓 구워낸 신선한 빵을 판매하며, 양구 특산물을 활용한 아이디어 빵들이 가득해 양구 여행 필수 기념 코스로 통합니다."
+  },
+  {
+    name: "까미노사이더리",
+    type: "애플사이더 / 친환경",
+    address: "강원특별자치도 양구군 국토정중앙면 국토정중앙로 45",
+    contact: "033-481-8880",
+    rating: 4.8,
+    benefits: "양구 사과로 만드는 천연 애플사이더(식초/음료)와 친환경 사과 디저트가 가득한 농촌 테마 카페.",
+    mapUrl: "https://m.map.naver.com/search2/search.naver?query=" + encodeURIComponent("까미노사이더리"),
+    desc: "버려지는 못난이 사과를 가치 있게 재생하여 로컬 브랜딩을 실천하는 복합 문화 공간입니다. 따뜻하고 자연 친화적인 돌담 인테리어가 편안함을 줍니다."
+  }
+];
+
 // ==================== STATE MANAGEMENT ====================
 
 let activeView = 'home';
@@ -323,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderTournamentList();
   renderMilitaryUnitTabs();
   renderMilitaryContent();
+  renderCafeList();
   
   // Setup Event Listeners for search
   document.getElementById('sports-search').addEventListener('input', (e) => {
@@ -335,6 +399,10 @@ document.addEventListener('DOMContentLoaded', () => {
   
   document.getElementById('food-search').addEventListener('input', (e) => {
     renderFoodList(e.target.value);
+  });
+  
+  document.getElementById('cafe-search').addEventListener('input', (e) => {
+    renderCafeList(e.target.value);
   });
   
   // Initialize Checklist state from LocalStorage
@@ -1144,6 +1212,58 @@ function renderFoodList(query = '') {
         <div class="directory-meta">
           <span style="color: var(--military-primary); font-weight:500;">${r.benefits}</span>
           <span><i data-lucide="star" class="star" style="fill: var(--accent-gold);"></i> ${r.rating}</span>
+        </div>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+  lucide.createIcons();
+}
+
+function renderCafeList(query = '') {
+  const container = document.getElementById('cafe-list-container');
+  if (!container) return;
+  
+  container.innerHTML = '';
+  
+  const filtered = CAFES_DATA.filter(c => 
+    c.name.toLowerCase().includes(query.toLowerCase()) || 
+    c.type.toLowerCase().includes(query.toLowerCase()) ||
+    c.desc.toLowerCase().includes(query.toLowerCase())
+  );
+  
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="glass-card text-center" style="padding: 20px;">
+        <p style="color: var(--text-muted); font-size: 13px;">해당 조건의 카페가 없습니다.</p>
+      </div>
+    `;
+    return;
+  }
+  
+  filtered.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'directory-card';
+    
+    card.innerHTML = `
+      <div style="width: 80px; height: 80px; border-radius: 6px; background: linear-gradient(135deg, #1b263b, #090d16); display:flex; justify-content:center; align-items:center; flex-shrink: 0;">
+        <i data-lucide="coffee" style="width:32px; height:32px; color: var(--military-primary); opacity:0.6;"></i>
+      </div>
+      <div class="directory-info">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; gap: 8px;">
+            <span class="directory-name">${c.name} <span style="font-size: 11px; font-weight: normal; color: var(--text-secondary);">(${c.type})</span></span>
+            <a href="tel:${c.contact}" class="directory-call-btn"><i data-lucide="phone" style="width:14px; height:14px;"></i></a>
+          </div>
+          <div class="directory-tag" style="background: rgba(216, 252, 56, 0.08); color: var(--military-primary); border-color: rgba(216, 252, 56, 0.2);">추천 포인트</div>
+          <p class="directory-desc">${c.desc}</p>
+        </div>
+        <div class="directory-meta">
+          <span style="color: var(--text-primary); font-weight:500;">${c.benefits}</span>
+          <span style="display: flex; align-items: center; gap: 4px;">
+            <i data-lucide="star" class="star" style="fill: var(--accent-gold); width: 12px; height: 12px;"></i> ${c.rating}
+            <button onclick="copyAddress('${c.address}')" class="btn-copy-address" style="margin-left: 8px; font-size: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 2px 6px; border-radius: 4px; cursor: pointer;">주소 복사</button>
+          </span>
         </div>
       </div>
     `;

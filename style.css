@@ -365,13 +365,40 @@ h3 {
 /* Home Section Styles */
 .hero-banner {
   padding: 38px 20px;
-  background: linear-gradient(to bottom, rgba(15, 44, 89, 0.6) 0%, rgba(9, 13, 22, 0.95) 100%), url('modern_tennis_court.png') no-repeat center center;
+  background: linear-gradient(to bottom, rgba(9, 21, 44, 0.5) 0%, rgba(9, 13, 22, 0.95) 100%), url('modern_tennis_court.png') no-repeat center center;
   background-size: cover;
-  border: 1px solid var(--border-color);
+  border: 1.5px solid var(--military-primary);
+  box-shadow: 0 0 20px rgba(216, 252, 56, 0.25), inset 0 0 15px rgba(216, 252, 56, 0.1);
   border-radius: var(--radius-lg);
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.hero-title span.neon-text {
+  background: var(--military-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 6px rgba(216, 252, 56, 0.6)) !important;
+  font-weight: 900;
+}
+
+.card-badge-neon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(216, 252, 56, 0.15);
+  color: var(--military-primary);
+  border: 1px solid rgba(216, 252, 56, 0.4);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 0 8px rgba(216, 252, 56, 0.2);
+  font-family: 'Outfit', sans-serif;
+  z-index: 10;
 }
 
 
@@ -463,6 +490,11 @@ h3 {
   box-shadow: var(--shadow-glow-military);
   transform: translateY(-2px);
   transition: var(--transition-normal);
+}
+
+.selector-card.sports-hover-cursor:hover {
+  border-color: var(--military-primary) !important;
+  box-shadow: 0 0 15px rgba(216, 252, 56, 0.15) !important;
 }
 
 .selector-card h3 {
